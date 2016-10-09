@@ -1,0 +1,71 @@
+<!DOCTYPE HTML>
+<html>
+  
+  <head>
+    <style>
+      .popUp {
+        background: #FFF;
+        border-radius: 20px;
+        bottom: 0;
+        box-shadow: 0 0 10px #000;
+        height: 100px;
+        left: 0;
+        margin: auto;
+        padding: 10px;
+        position: fixed;
+        right: 0;
+        top: -200%;
+        transition: top 0.5s;
+        -moz-transition: top 0.5s;
+        -o-transition: top 0.5s;
+        -webkit-transition: top 0.5s;
+        width: 100px;
+        z-index: 10;
+      }
+      .popUp.show {
+        top: 0;
+      }
+      .popUp > a {
+        float: right;
+      }
+      .popUp > div {
+        height: 80%;
+        margin-top: 20px;
+      }
+      .popUp iframe {
+        border: 0;
+        height: 100%;
+        width: 100%;
+      }
+    </style>
+  </head>
+  
+  <body>
+    <div class="popUp">
+      <a href="#" onclick="return popUp.hide(), false">Закрыть</a>
+      <div></div>
+    </div>
+    
+    <a href="#" onclick="return myPopUp(), false">Открыть попап</a>
+    
+    <script>
+      var popUpElem = document.querySelector('.popUp'),
+        popUp = {
+          hide: function () {
+            popUpElem.classList.remove('show');
+          },
+          show: function (html, width, height) {
+          	if(html) popUpElem.getElementsByTagName('div')[0].innerHTML = html;
+            if(width) popUpElem.style.width = width + 'px';
+            if(height) popUpElem.style.height = height + 'px';
+            popUpElem.classList.add('show');
+          }
+        };
+
+      function myPopUp() {
+        popUp.show('<iframe src="index.html"></iframe>', 1170, 800);
+      }
+    </script>
+  </body>
+
+</html>
